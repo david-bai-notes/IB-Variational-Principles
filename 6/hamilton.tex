@@ -1,0 +1,37 @@
+\section{Hamilton's Equations}
+Recall that the Lagrangian is defined by $L=L(\underline{q},\underline{\dot{q},t})=T-V$ where $\underline{q}$ is either the path of one particle or the path of many particles considered together in the configuration space.
+\begin{definition}
+    The Hamiltonian is the Legendre transform of $L$ wrt the velocity $\underline{\dot{q}}=\underline{v}$, so
+    $$H(\underline{q},\underline{p},t)=\sup_{\underline{v}}(\underline{p}\cdot\underline{v}-\underline{L})$$
+\end{definition}
+The component $\underline{p}$ here is understood to be a generalised momentum.
+So if $L$ is nice enough, we can write $H=\underline{p}\cdot\underline{v}-L(\underline{x},\underline{v},t)$ where $\underline{v}(\underline{p})$ is the solution to
+$$p_i=\frac{\partial L}{\partial \dot{q_i}}$$
+\begin{example}
+    Consider $T=m|\underline{\dot{q}}|^2/2, V=V(\underline{q})$, so $\underline{v}=\underline{p}/m$, therefore
+    $$H(\underline{q},\underline{p},t)=\frac{1}{2m}|\underline{p}|^2+V(\underline{q})$$
+    So the Hamiltonian arises as the total energy.
+\end{example}
+What happened to the Euler-Lagrange equations?
+We have $H=p_i\dot{q}^i-L(q^i,\dot{q}^i,t)$ where the summation in the first term is implied.
+Suppose $L$ satisfies the Euler-Lagrange equations, we have
+\begin{align*}
+    \mathrm dH&=\frac{\partial H}{\partial q_i}\,\mathrm dq_i+\frac{\partial H}{\partial p_i}\,\mathrm dp_i+\frac{\partial H}{\partial t}\,\mathrm dt\\
+    &=p_i\,\mathrm d\dot{q}^i+\dot{q}^i\,\mathrm dp_i-\frac{\partial L}{\partial q^i}\,\mathrm dq^i-\frac{\partial L}{\partial \dot{q}^i}\,\mathrm d\dot{q}^i-\frac{\partial L}{\partial t}\,\mathrm dt\\
+    &=\dot{q}^i\,\mathrm dp_i-\dot{p}_i\,\mathrm dq^i-\frac{\partial L}{\partial t}\,\mathrm dt
+\end{align*}
+Since $\partial L/\partial \dot{q}^i=p_i$
+So by comparing the differentials,
+$$\dot{q}^i=\frac{\partial H}{\partial p_i},\dot{p}_i=-\frac{\partial H}{\partial q^i},\frac{\partial H}{\partial t}=-\frac{\partial L}{\partial t}$$
+These equations are called the Hamilton's Equations.\\
+Assume there is no explicit time dependence, then the system consists of $2n$ first-order ODEs, so we need to specify $q^i(0),p_i(0)$ for $i=1,\ldots,n$ for a typical system.
+The solution curves to the Hamilton's equations is a trajectory in $2n$ dimensional ``phase space''.\\
+Alternatively, Hamilton's equations also arise from the stationary points of a functional
+$$S[\underline{q},\underline{p}]=\int_{t_1}^{t_2}f(\underline{q},\underline{p},\underline{\dot{q}},\underline{\dot{p}},t)\,\mathrm dt,f=\dot{q}^ip_i-H(\underline{q},\underline{p},t)$$
+which variation wrt $p_i$ is then
+$$\frac{\partial f}{\partial p_i}-\frac{\mathrm d}{\mathrm dt}\frac{\partial f}{\partial \dot{p}_i}=0\implies \dot{q}^i=\frac{\partial H}{\partial p_i}$$
+and variation wrt $q_i$ is
+$$\frac{\partial f}{\partial q^i}-\frac{\mathrm d}{\mathrm dt}\frac{\partial f}{\partial \dot{q}^i}=0\implies \dot{p}_i=-\frac{\partial H}{\partial q_i}$$
+Which are just the Hamilton's equations.\\
+Hamilton's equatios (or the Hamiltonian formulation of dynamics) actually allows one to extend the theory of classical dynamics to quantum settings, as observed by Paul Dirac in 1926.
+So the Hamiltonian formalism can be seen as a bridge between classical and quantum physics.

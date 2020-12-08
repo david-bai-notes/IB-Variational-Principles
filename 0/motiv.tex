@@ -1,0 +1,62 @@
+\section{Motivation}
+The history of variational principles can be dated back to a pretty concrete classical problem known as the Brachistochrone problem:
+\begin{example}[The Brachistochrone Problem]
+    Consider a particle moving under the influence of gravity on a wire joining points $A$ and $B$.
+    What shape of the curve gives the shortest travel time of the particle given that it starts from rest?\\
+    Mathematically, we want to minimise the quantity
+    $$\tau=\int_A^B\mathrm dt=\int_A^B\frac{\mathrm dL}{v(x,y)}$$
+    This problem was first created by Johann Bernoulli in 1696, who posted the problem in a journal as a challenge to the world's mathematcians at the time.
+    And the answer given by Newton starts the study of calculus of variations.
+    We are not going to fully solve the problem in this section, but instead just give a taste of the whole picture.\\
+    Assuming $A$ is the origin and $B=(x_2,y_2)$
+    Using energy conservation,
+    $$\frac{1}{2}mv^2+mgy=0\implies v=\sqrt{-2gy}$$
+    Take $y$ as a function of $x$, then we are aiming at finding the minima of the functional
+    $$\tau[y]=\frac{1}{\sqrt{2g}}\int_0^{x_2}\frac{\sqrt{1+(y^\prime)^2}}{\sqrt{-y}}\,\mathrm dx$$
+    subject to
+    $$\begin{cases}
+        y(0)=0\\
+        y(x_2)=y_2
+    \end{cases}$$
+\end{example}
+Another very famous and very useful example is geodesics.
+\begin{example}[Geodesics]
+    On a surface $\Sigma$, a geodesics $\gamma$ is the path of least length joining two given points.
+    If $\Sigma$ is the Euclidean plane, it is well-known that $\gamma$ has to be a straight line.
+    Let $D[y]$ denote the length of the curve given by $y$ and assume that the curve traverse as a function $y(x)$ from $x_1,x_2$, then minimising the following integral 
+    $$D[y]=\int_{x_1}^{x_2}\sqrt{1+(y^\prime)^2}\,\mathrm dx$$
+    subject to $y(x_1)=y_1,y(x_2)=y_2$ would be our aim.
+\end{example}
+In general, the calculus of variations focus on solving optimisation problems of the a functional (i.e. functions from a space of functions to the reals)
+$$F[y]=\int_{x_1}^{x_2}f(x,y(x),y^\prime(x))\,\mathrm dx$$
+among all (sufficiently smooth) functions $y$ subject to initial conditions.
+\begin{example}[Examples of Functionals]
+    1. For a function $y(x)$, we can define the functional calculating the area under the curve by setting $f(x,y,y^\prime)=y$.\\
+    2. We can also define the functional calculating length by
+    $$f(x,y,y^\prime)=\sqrt{1+(y^\prime)^2}$$
+\end{example}
+Notationally, we write $C(\mathbb R)$ as the space of continuous functions from $\mathbb R$ to $\mathbb R$.
+We write $C^k(\mathbb R)$ to denote the space of $k$-time differentiable functions with continuous $k^{th}$ derivative.
+And $C^k_{\alpha,\beta}(\mathbb R)$ is the space of functions $[\alpha,\beta]\to\mathbb R$ that are $C^k$ on $[\alpha,\beta]$ and vanishes at $\alpha,\beta$.
+One should know that these are these are all (infinite-dimensional) vector spaces over $\mathbb R$, the detail of analysis of which will be covered in functional analysis contexts.\\
+The reason why the course is called ``variational principles'' instead of ``calculus of variations'' is because what we are studying are principles in nature and laws of physics that follow from extremising functionals.
+\begin{example}[Fermat's Principle]
+    Light that travels between two points follow the path that extremise the travel time.
+\end{example}
+\begin{example}[Principle of Least Action]
+    Let $T,V$ be the kinetic and potential energies.
+    We define the functional on a path
+    $$S[\gamma]=\int_{t_1}^{t_2}(T-V)\,\mathrm dt$$
+    then the path that a particle travels from $t=t_1$ to $t=t_2$ is the one that extremises $S$.
+    Once we have developed our theory further, one can show that Newton's Second Law follows from this principle.\\
+    Leibniz's take on this principle is that we live in ``the best of all possible worlds''.
+    In some sense, we go from science to something like the field of theology.
+    Of course, this is not in the scope of this course.\\
+    Richard Feynman's take on this principle is that it is ``wrong''.
+    Indeed, in quantum physics, nothing takes a definitive path, but every paths are possible with some probability.
+    The principle under this framework, instead, is that the stationary path of a particle is, in fact, the interference along all paths.
+\end{example}
+What we shall show in this course are the follows:
+First, we will see some necessary conditions for a function to be an extrema, like the Euler-Lagrange equations.
+Secondly, we will bring this principle on problems in geometry, physics, and problem with constraints (like the isoperimetric inequality).
+We will also talk about what is called the ``second variation'' as an analog of the second derivative.

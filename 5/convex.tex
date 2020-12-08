@@ -1,0 +1,144 @@
+\section{Convex Functions}
+We take a break from calculus of variations and go back to calculus in $\mathbb R^n$ for a moment.
+There is a class of functions whose stationary points are easy to classify.
+\begin{definition}
+    A set $S\subset\mathbb R^n$ is convex if for any $\underline{x},\underline{y}\in S$ and $t\in[0,1]$, we have $(1-t)\underline{x}+t\underline{y}\in S$.
+\end{definition}
+\begin{definition}
+    A graph of a function $f:S\to\mathbb R$ where $S\subset\mathbb R^n$ is a surface described by $z-f(\underline{x})=0$, which is a surface in $S\times\mathbb R$.\\
+    A chord of $f$ is a line segment in $\mathbb R^n\times\mathbb R$ joining two points on the graph of $f$.
+\end{definition}
+\begin{definition}
+    Let $S\subset\mathbb R^n$ and $f:S\to\mathbb R$ be a function.
+    We say $f$ is convex if $S$ is convex and for any $\underline{x},\underline{y}\in S$ and $t\in[0,1]$ we have
+    $$f((1-t)\underline{x}+t\underline{y})\le (1-t)f(\underline{x})+tf(\underline{y})$$
+\end{definition}
+Loosely speaking, a function is convex iff its domain is convex and every chord of it is above (or on) it, where the notion of ``above'' is in the sense of the last component of $\mathbb R^n\times\mathbb R$ in our above definition.
+\begin{remark}
+    We can define concave functions correspondingly by saying a function $f$ is concave iff $-f$ is convex.\\
+    A function $f$ is strictly convex if the $\le$ in the definition is replaced by $<$ given $t\in (0,1)$.
+    It is obvious that $f$ is strictly convex only if it is convex.
+    This is due to the observation that the definition does not really change if we replace $t\in[0,1]$ by $t\in(0,1)$.
+\end{remark}
+\begin{example}
+    The function $f:\mathbb R\to\mathbb R$ by $x\mapsto x^2$ is convex as $\mathbb R$ is convex and for any $x,y\in\mathbb R,t\in (0,1)$,
+    \begin{align*}
+        f((1-t)x+ty)-(1-t)f(x)-tf(y)&=((1-t)x+ty)^2-(1-t)x^2-ty^2\\
+        &=-(1-t)t(x-y)^2\\
+        &<0
+    \end{align*}
+    Hence $f$ is strictly convex.
+\end{example}
+\begin{example}
+    Consider the function $f:\mathbb R\setminus\{0\}\to\mathbb R$ by $x\mapsto x^{-1}$.
+    It is not convex as its domain is not, but its restriction on $\mathbb R_{>0}$ is (strictly) convex.
+\end{example}
+\subsection{Conditions for Convexity}
+There are quite a few tests for convexity of a function $f$ (mostly with some properties).
+\begin{proposition}
+    Suppose $f:S\to\mathbb R$ is differentiable for some convex $S$, then $f$ is convex iff for any $\underline{x},\underline{y}\in S$,
+    $$f(\underline{y})\ge f(\underline{x})+(\underline{y}-\underline{x})\cdot\nabla f(\underline{x})$$
+\end{proposition}
+\begin{proof}
+    If the inequality is true, then by applying it twice,
+    $$\begin{cases}
+        f(\underline{x})\ge f(\underline{z})+(\underline{x}-\underline{z})\cdot\nabla f(\underline{z})\\
+        f(\underline{y})\ge f(\underline{z})+(\underline{y}-\underline{z})\cdot\nabla f(\underline{z})
+    \end{cases}$$
+    So for $t\in (0,1)$, we set $\underline{z}=(1-t)\underline{x}+t\underline{y}\in S$, then the result follows by adding $1-t$ times the first inequality to $t$ times the second.\\
+    Conversely, set $h:[0,1]\to\mathbb R$ by
+    $$h(t)=(1-t)f(\underline{x})+tf(\underline{y})-f((1-t)\underline{x}+t\underline{y})\ge 0$$
+    by convexity.
+    It is also differentiable in $[0,1]$ as $f$ is.
+    Now
+    $$-f(\underline{x})+f(\underline{y})-(\underline{y}-\underline{x})\cdot\nabla f(\underline{x})=h^\prime(0)\ge 0$$
+    as $h(0)=0$ and $h\ge 0$.
+\end{proof}
+\begin{corollary}
+    If $f$ is convex and has a stationary point at $\underline{x}$, then $\underline{x}$ is a global minimum of $f$.
+\end{corollary}
+\begin{proof}
+    Immediate from the preceding proposition.
+\end{proof}
+\begin{proposition}
+    Let $S$ be convex and $f:S\to\mathbb R$.
+    If $(\nabla f(\underline{y})-\nabla f(\underline{x}))\cdot (\underline{y}-\underline{x})\ge 0$ for any $\underline{x},\underline{y}\in S$, then $f$ is convex.
+\end{proposition}
+Note that if $S\subset\mathbb R$, then it is just saying that $f^\prime$ is monotonically increasing
+\begin{proof}
+    Exercise.
+\end{proof}
+\begin{proposition}
+    Assume that $f$ is twice differentiable, then $f$ is convex iff $H$ is always nonnegative definite where $H$ is the Hessian of $f$, i.e.
+    $$H_{ij}=\frac{\partial^2f}{\partial x_i\partial x_j}$$
+\end{proposition}
+An easy extension of this asserts the strict convexity of $f$ given that $H$ is positive definite.
+We will only show the forward direction.
+\begin{proof}
+    If $f$ is convex, then by taking $\underline{y}=\underline{x}+\underline{h}$ in the preceding proposition we have
+    $$\underline{h}\cdot(\nabla f(\underline{x}+\underline{h})-\nabla f(\underline{x}))\ge 0$$
+    for any $\underline{h}\in S-\underline{x}$.
+    So for small $|\underline{h}|$,
+    $$\frac{\partial f}{\partial x_i}(\underline{x}+\underline{h})=\frac{\partial f}{\partial x_i}(\underline{x})+h_jH_{ij}(\underline{x})+O(|\underline{h}|^2)$$
+    where the summation is implied.
+    Hence
+    $$h_ih_jH_{ij}+O(|\underline{h}|^2)\ge 0$$
+    by taking $|\underline{h}|$ small, we obtain the nonnegative definiteness of $H(\underline{x})$.
+\end{proof}
+\begin{example}
+    Take $f(x,y)=1/(xy)$ defined on the domain $(\mathbb R_{>0})^2$.
+    Then
+    $$H=\frac{1}{xy}\begin{pmatrix}
+        2/x^2&1/(xy)\\
+        1/(xy)&2/y^2
+    \end{pmatrix}$$
+    which has positive determinant and trace, hence its eigenvalues are all positive, therefore $H$ is positive definite hence strictly convex.
+\end{example}
+\subsection{The Legendre Transform}
+\begin{definition}
+    Let $S\subset\mathbb R^n$ and $f:S\to\mathbb R$ be a function.
+    Its Legendre transform is defined to be
+    $$f^\star(\underline{p})=\sup_{\underline{x}\in S}(\underline{p}\cdot\underline{x}-f(\underline{x}))$$
+    provided that it exists and is always finite.
+\end{definition}
+\begin{example}
+    Take $S=\mathbb R$, then the Legendre transform is simply the maximum (signed) distance between the line $z=f(x)$ and $z=px$, given that it exists.\\
+    Take for example $f(x)=ax^2$ where $a>0$ (not that if $a<0$ then the Legendre transform does not exist anywhere), then
+    $$f^\star(p)=\sup_{x\in\mathbb R}(px-ax^2)=\frac{p^2}{4a}$$
+    by some calculation.
+    Now, by taking $a\mapsto 1/(4a)$ we obtain $(f^\star)^\star(s)=as^2$, hence $(f^\star)^\star=f$.
+\end{example}
+It turns out to be always true that $(f^\star)^\star=f$ (in a domain where both of them are defined) if $f$ is convex.
+\begin{proposition}
+    $f^\star$ is convex in any convex subset $T$ of its domain.
+\end{proposition}
+\begin{proof}
+    By definition, for any $\underline{p},\underline{q}\in T$,
+    \begin{align*}
+        f^\star((1-t)\underline{p}+t\underline{q})&=\sup_{\underline{x}}((1-t)\underline{p}\cdot\underline{x}+t\underline{q}\cdot\underline{x}-f(\underline{x}))\\
+        &=\sup_{\underline{x}}((1-t)(\underline{p}\cdot\underline{x}-f(\underline{x}))+t(\underline{q}\cdot\underline{x}-f(\underline{x})))\\
+        &\le (1-t)f^{\star}(\underline{p})+tf^\star(\underline{q})
+    \end{align*}
+    As desired.
+\end{proof}
+In practice, if $f$ is convex and differentiable, then if its Legendre transform at $\underline{p}$ exists we can (given certain conditions on the domain and/or the function) find it by the equation
+$$\nabla(\underline{p}\cdot\underline{x}-f(\underline{x}))=\underline{0}\implies \underline{p}=\nabla f$$
+If $f$ is strictly convex, then there is an unique inversion $\underline{x}=\underline{x}(\underline{p})$, so $f^\star(p)=\underline{p}\cdot\underline{x}(\underline{p})-f(\underline{x}(\underline{p}))$.
+\subsection{Applications to Thermodynamics}
+A many-particle system (like gas) are hard to study directly from the first principles (like Newton's Laws), hence are often analysed by looking at microscopic variables like the pressure $P$, volume $V$, temperature $T$ or entropy $S$ (which measures the global disorder of the system) or internal energy $u(S,V)$.
+\begin{definition}
+    The Hermholtz free energy is defined by
+    $$F(T,V)=\inf_{S}(u(S,V)-TS)$$
+\end{definition}
+Now we can rewrite this in terms of Legendre transform, that is
+$$F(T,V)=\inf_{S}(u(S,V)-TS)=-\sup_{S}(TS-u(S,V))=-u^\star(T,V)$$
+Note that the transformation of $u$ here is with respect to $T$ with $V$ fixed as a parameter.
+Consequently,
+$$\left.\frac{\partial}{\partial S}(TS-u(S,V))\right|_{T,V}=0\implies T=\left.\frac{\partial u}{\partial S}\right|_V$$
+There are other examples where we can make use of the Legendre transform too, for example:
+\begin{definition}
+    The enthalpy of the system is described by
+    $$H(S,P)=\inf_{V}(u(S,V)+pV)$$
+\end{definition}
+Then $H(S,P)=-u^\star(-P,S)$ where the Legendre transform is again taken with $S$ fixed.\\
+Like these, Legendre transforms can be a way to swap from $(S,V)$ dependence to dependence of other variables.

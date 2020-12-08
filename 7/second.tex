@@ -1,0 +1,78 @@
+\section{The Second Variation}
+\subsection{The Legendre Condition}
+By the Euler-Lagrange equation we can only find the stationary point(s) of a functional, but we do not know about whether they are a minimum, maximum or a saddle point.
+When we are in $\mathbb R^n$, a (partial) solution to this problem is to look at the second (or higher) derivative, which inspires us to consider higher order variations.\\
+Consider the functional
+$$F[y]=\int_\alpha^\beta f(x,y,y^\prime)\,\mathrm dx$$
+We now want to expand further to the second order term of $\epsilon$, that is, for $\eta$ such that $\eta(\alpha)=\eta(\beta)=0$ and $y$ a stationary point of $F$,
+$$F[y+\epsilon\eta]-F[y]=\frac{\epsilon^2}{2}\int_\alpha^\beta\left( \eta^2\frac{\partial^2f}{\partial y^2}+(\eta^\prime)^2\frac{\partial^2f}{\partial(y^\prime)^2}+2\eta\eta^\prime\frac{\partial^2f}{\partial y\partial y^\prime} \right)\,\mathrm dx+O(\epsilon^3)$$
+The integrand (as a functional on $\eta$) is called the second variation:
+$$\delta^2 F[y](\eta)=\frac{1}{2}\int_\alpha^\beta\left( \eta^2\frac{\partial^2f}{\partial y^2}+(\eta^\prime)^2\frac{\partial^2f}{\partial(y^\prime)^2}+2\eta\eta^\prime\frac{\partial^2f}{\partial y\partial y^\prime} \right)\,\mathrm dx$$
+By a simple integration by part argument on the last term and using the boundary condition on $\eta$, we can further simplify the expression to get
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta(Q\eta^2+P(\eta^\prime)^2)\,\mathrm dx,Q=\frac{\partial^2f}{\partial y^2}-\frac{\mathrm d}{\mathrm dx}\left( \frac{\partial^2 f}{\partial y\partial y^\prime}\right),P=\frac{\partial^2f}{\partial (y^\prime)^2}$$
+The way we got the expression of $\delta^2F[y]$ then hinted that $y$ being a minimiser relates greatly to $\delta^2F[y]$ being positive.
+\begin{proposition}
+    If $y$ is a solution to the Euler-Lagrange equation of $F$ and $Q\eta^2+P(\eta^\prime)^2>0$ for any nonzero (sufficiently smooth) function $\eta$ that vanishes at $\alpha,\beta$, then $y$ is a local minimiser of $F$.
+\end{proposition}
+\begin{example}
+    For the geodesics on the plane, we already know that the solutions to the Euler-Lagrange equation are striaght line segments.
+    We have $f=\sqrt{1+(y^\prime)^2}$, so
+    $$P=\frac{\partial}{\partial y^\prime}\left( \frac{y^\prime}{\sqrt{1+(y^\prime)^2}} \right)=\frac{1}{(1+(y^\prime)^2)^{3/2}},Q=0$$
+    But then $P$ is always positive and $\eta^\prime$ is nonzero since $\eta$ is nonconstant (if it is constant then it is zero by the boundary condition), so by the preceding proposition any stationary point of it is a local minimiser.
+\end{example}
+An analogous computation proves a similar result for geodesics on the sphere.
+\begin{proposition}
+    If $y_0(x)$ is a local minimum, then
+    $$P=\left.\frac{\partial^2 f}{\partial (y^\prime)^2}\right|_{y_0}=0$$
+\end{proposition}
+This is known as the Legendre condition.
+We will sketch a proof of it.
+\begin{proof}[Sketch of proof]
+    Assume there is some $x_0$ such that $P(x_0,y_0,y_0^\prime)<0$.
+    We can easily constuct a function $\eta$ such that $|\eta|<\epsilon$ for some small $\epsilon>0$ but $\eta$ fluctuates so rapid around $x_0$ such that $|\eta^\prime|$ is big around $x_0$, then the $Q\eta^2$ term would contribute very little to the integral but $P(\eta^\prime)^2$ contributes a more significant and positive value, which shall yield a contradiction.
+\end{proof}
+Note that the Legendre condition is only necessary but not sufficient.
+An obvious sufficient condition is $P>0,Q\ge 0$ at $y_0$.
+\begin{example}[The Brachistochrone Problem]
+    We have
+    $$f=\sqrt{\frac{1+(y^\prime)^2}{-y}}$$
+    Which we already know has the cycloid as a stationary point.
+    To see it is actually a minimiser, we compute
+    $$P=\frac{1}{(1+(y^\prime)^2)^{3/2}\sqrt{-y}}>0,Q=\frac{1}{2\sqrt{1+(y^\prime)^2}y^2\sqrt{-y}}>0$$
+    so the cycloid is indeed a local minimiser.
+\end{example}
+\subsection{Associated Eigenvalue Problem}
+Rewrite the integrand of the second variation in the form
+$$Q\eta^2+P(\eta^\prime)^2=Q\eta^2+\frac{\mathrm d}{\mathrm dx}(P\eta\eta^\prime)-\eta\frac{\mathrm d}{\mathrm dx}(P\eta^\prime)$$
+Integrating by part again yields another formula for the second variation.
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta\eta\left( -\frac{\mathrm d}{\mathrm dx}(P\eta^\prime)+ Q\eta\right)\,\mathrm dx$$
+But the thing in the bracket is precisely the Sturm-Liouville operator $\mathcal L$ in Example \ref{sturm-liouville} with $\rho=P$ and $\sigma=Q$ applied to $\eta$.
+So if $\mathcal L(\eta)=-\omega^2\eta$ for some $\eta$ satisfying the boundary conditions and $\omega\in\mathbb R$, then $\delta^2F[y_0]<0$ if $\eta$ is not constantly zero, therefore $y_0$ is not a minimiser.
+Observe here that $\mathcal L$ can have nonpositive eigenvalues (as shown in the example below) even if $P>0$, so this would mean that the Legendre condition is not sufficient.
+\begin{example}
+    Consider the functional
+    $$F[y]=\int_0^\beta((y^\prime)^2-y^2)\,\mathrm dx$$
+    subject to the initial conditions $y(0)=y(\beta)=0$ and $\beta$ is not an integer multiple of $\pi$.
+    The Euler-Lagrange equation transforms to $y^{\prime\prime}+y=0$, which solves to $y\equiv 0$ due to our initial condition.
+    Now
+    $$\delta^2F[0](\eta)=\frac{1}{2}\int_0^\beta((\eta^\prime)^2-\eta^2)\,\mathrm dx$$
+    So $P=1>0$, so the Legendre condition is satisfied but the corresponding Sturm-Liouville operator is $\mathcal L(\eta)=-\eta^{\prime\prime}-\eta$.
+    But if $\beta>\pi$, then there is a solution $\omega$ satisfying the condition $(\pi/\beta)^2=1-\omega^2$, which makes the function $\eta(x)=\sin(\pi x/\beta)$ satisfy $\mathcal L(\eta)=-\omega^2\eta$, hence $0$ is not a local minimiser even if it satisfies the Legendre condition.
+\end{example}
+The example shows that $P>0$ alone may not guarantee local minimisation when the interval $[\alpha,\beta]$ is ``too large''.
+We will make it precise in a moment.
+\subsection{The Jacobi Condition}
+Legendre tried and failed to prove that $P>0$ is also a sufficient condition for a local minimiser -- which is because it is not, as seen in the last example.
+Jacobi, on the other hand, improved upon Legendre's idea.
+Assuming that the Legendre condition holds, then let $\phi=\phi(x)$ be any differentiable function on $[\alpha,\beta]$, then
+$$0=\int_\alpha^\beta (\phi\eta^2)^\prime\,\mathrm dx=\int_\alpha^\beta(\phi^\prime\eta^2+2\eta\eta^\prime\phi)\,\mathrm dx$$
+So we can modify the expression of the second variation by
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta(P(\eta^\prime)^2+2\phi\eta\eta^\prime+(Q+\phi^\prime)\eta^2)\,\mathrm dx$$
+Completing the square,
+$$\delta^2F[y](\eta)=\frac{1}{2}\int_\alpha^\beta \left( P\left( \eta^\prime+\frac{\phi}{P}\eta \right)^2 +\left( Q+\phi^\prime-\frac{\phi^2}{P} \right)\eta^2\right)\,\mathrm dx$$
+Hence, if we can find a solution $\phi$ to the differential equation $\phi^2=P(Q+\phi^\prime)$, then the positivity of the integrand is proved, hence we have a local minimum.
+This ODE is called the Ricatti equation.\\
+We can transform the Ricatti equation into a linear second-order ODE by setting $\phi=-Pu^\prime/u$ for some $u$ nonzero anywhere on $[\alpha,\beta]$, so
+$$-(Pu^\prime)^\prime+Qu=0$$
+this is called the Jacobi accessory equation.
+But this is exactly the kernel problem of $\mathcal L$ with the restriction that the solution vanishes nowhere on $[\alpha,\beta]$.
